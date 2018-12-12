@@ -45,6 +45,8 @@ public class FragmentInfo extends Fragment {
         String version = Build.VERSION.RELEASE;
         tvVersion.setText(tvVersion.getText() + version);
 
+
+
         return  v;
     }
 }
