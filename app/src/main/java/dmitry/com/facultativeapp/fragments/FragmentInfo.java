@@ -19,6 +19,8 @@ import dmitry.com.facultativeapp.R;
 
 public class FragmentInfo extends Fragment {
 
+    //Фрагмент отвечающий за вывод информации о телефоне
+
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
