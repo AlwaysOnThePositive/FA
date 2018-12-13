@@ -57,16 +57,12 @@ public class FragmentMap extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        MapKitFactory.setApiKey("c47a3cf9-06fd-48e2-8cfc-978bb2cfc119");
-        MapKitFactory.initialize(getContext());
-        TransportFactory.initialize(getContext());
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_map, null);
+        View view = inflater.inflate(R.layout.fragment_map, container, false);
         mapView = view.findViewById(R.id.mapView);
         return view;
     }

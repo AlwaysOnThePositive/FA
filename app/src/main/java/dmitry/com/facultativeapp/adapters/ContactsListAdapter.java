@@ -53,7 +53,11 @@ public class ContactsListAdapter extends RecyclerView.Adapter<ContactsListAdapte
     @Override
     public void onBindViewHolder(@NonNull ContactViewHolder holder, int position) {
         holder.nameTV.setText(contactDataList.get(position).getNameData().getFullName());
-        holder.phoneTV.setText(contactDataList.get(position).getPhoneList().get(0).getMainData());
+        if (contactDataList.get(position).getPhoneList().size() > 0) {
+            holder.phoneTV.setText(contactDataList.get(position).getPhoneList().get(0).getMainData());
+        } else {
+            holder.phoneTV.setText("нет номера");
+        }
     }
 
     //Количество элементов списка

@@ -112,27 +112,28 @@ public class FragmentSensor extends Fragment {
     }
 
     private void saveBitmapToGallery(Bitmap bitmap, String fName) {
-
-        // Check the SDK version and whether the permission is already granted or not.
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && ActivityCompat.checkSelfPermission
                 (getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
             return;
-            //After this point you wait for callback in onRequestPermissionsResult(int, String[], int[]) overriden method
         }
 
+        //Получаем адрес корневого каталога с фотками
         String root = Environment.getExternalStoragePublicDirectory(Environment
                 .DIRECTORY_PICTURES).toString();
 
+        //Создаем там новую папку
         File myDir = new File(root + "/Screen");
         myDir.mkdirs();
         fName += ".jpg";
+        //Создаем в этой папке новый файл
         File file = new File(myDir, fName);
         if (file.exists()) {
             file.delete();
         }
         try {
+            //Записываем нашу фотку(Скрин) в этот файл
             FileOutputStream outputStream = new FileOutputStream(file);
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
             outputStream.flush();
@@ -141,22 +142,22 @@ public class FragmentSensor extends Fragment {
             e.printStackTrace();
         }
 
+        //Намеренно просим систему просканировать телефон(Sd card) на наличие новый фоток
         MediaScannerConnection.scanFile(getActivity(), new String[]{file.toString()}, null, new
                 MediaScannerConnection.OnScanCompletedListener() {
             @Override
             public void onScanCompleted(String path, Uri uri) {
+                //Закончилось сканирование
             }
         });
     }
 
-    // must override for listener
     @Override
     public void onPause() {
         super.onPause();
         sensorManager.unregisterListener(listener);
     }
 
-    // must override for listener
     @Override
     public void onResume() {
         super.onResume();
@@ -169,6 +170,7 @@ public class FragmentSensor extends Fragment {
         tvAccelerometer.setText(sb);
     }
 
+    //В инете нашел )))
     @SuppressLint("DefaultLocale")
     String format(float values[]) {
         return String.format("%1$.1f\t\t%2$.1f\t\t%3$.1f", values[0], values[1],
