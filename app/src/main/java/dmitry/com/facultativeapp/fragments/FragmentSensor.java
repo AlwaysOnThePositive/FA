@@ -85,8 +85,6 @@ public class FragmentSensor extends Fragment {
             public void onClick(View v) {
                 b = Instruments.takeScreenshotOfRootView(imgViewScreen);
                 imgViewScreen.setImageBitmap(b);
-
-//                saveBitmapToGallery(b, String.valueOf(System.currentTimeMillis()));
             }
         });
 

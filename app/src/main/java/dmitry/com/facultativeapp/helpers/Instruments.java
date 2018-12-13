@@ -5,8 +5,6 @@ import android.view.View;
 
 public class Instruments {
 
-
-
     //Класс в котором располагаются воспомогательные методы
 
     private static Bitmap takeScreenshot(View v) {
