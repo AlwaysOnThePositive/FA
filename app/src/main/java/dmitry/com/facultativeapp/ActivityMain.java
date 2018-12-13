@@ -1,10 +1,6 @@
 package dmitry.com.facultativeapp;
-
-import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -46,15 +42,6 @@ public class ActivityMain extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
         drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -63,7 +50,6 @@ public class ActivityMain extends AppCompatActivity
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
 
         TextView uName = navigationView.getHeaderView(0).findViewById(R.id.githubName);
         TextView uCom = navigationView.getHeaderView(0).findViewById(R.id.githubCom);
@@ -85,9 +71,8 @@ public class ActivityMain extends AppCompatActivity
         rootFragments.add(new FragmentInfo());
         rootFragments.add(new FragmentSensor());
         fragNavController.setRootFragments(rootFragments);
-        //Вот тут кароче много чего интересного - смотреть в документации
         fragNavController.setFragmentHideStrategy(FragNavController.HIDE);
-        //!!! инициализация нашего контроллера!!! ОБЯЗАТЕЛЬНР ИНАЧЕ ОШИБКА
+        //!!! инициализация нашего контроллера!!! ОБЯЗАТЕЛЬНО ИНАЧЕ ОШИБКА
         fragNavController.initialize(FragNavController.TAB1, savedInstanceState);
     }
 
@@ -98,24 +83,6 @@ public class ActivityMain extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.activity_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     @SuppressWarnings("StatementWithEmptyBody")

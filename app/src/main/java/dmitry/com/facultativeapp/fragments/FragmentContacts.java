@@ -53,9 +53,9 @@ public class FragmentContacts extends Fragment {
         } else {
             // Android version is lesser than 6.0 or the permission is already granted.
             List<String> contacts = getContactNames();
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout
-                    .simple_list_item_1, contacts);
-            lstNames.setAdapter(adapter);
+//            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout
+//                    .simple_list_item_1, contacts);
+//            lstNames.setAdapter(adapter);
         }
     }
 
@@ -63,8 +63,8 @@ public class FragmentContacts extends Fragment {
         List<String> contacts = new ArrayList<>();
 
         // Get the ContentResolver
-        ContentResolver contentResolver = getContentResolver();
-        // Get the Cursor of all contacts
+        ContentResolver contentResolver = getActivity().getContentResolver();
+//         Get the Cursor of all contacts
         Cursor cursor = contentResolver.query(ContactsContract.Contacts.CONTENT_URI, null, null,
                 null, null);
 

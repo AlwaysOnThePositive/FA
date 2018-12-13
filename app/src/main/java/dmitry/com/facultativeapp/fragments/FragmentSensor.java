@@ -27,8 +27,6 @@ import android.widget.Toast;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.Objects;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import dmitry.com.facultativeapp.R;
 import dmitry.com.facultativeapp.helpers.Instruments;
@@ -38,7 +36,6 @@ public class FragmentSensor extends Fragment {
     private TextView tvAccelerometer;
     private SensorManager sensorManager;
     private Sensor sensor;
-    private Timer timer;
     private StringBuilder sb = new StringBuilder();
     private Bitmap b;
     private SensorEventListener listener;
@@ -85,6 +82,7 @@ public class FragmentSensor extends Fragment {
             public void onClick(View v) {
                 b = Instruments.takeScreenshotOfRootView(imgViewScreen);
                 imgViewScreen.setImageBitmap(b);
+                Toast.makeText(getActivity(), "Screenshot is made", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -92,6 +90,8 @@ public class FragmentSensor extends Fragment {
             @Override
             public void onClick(View v) {
                 saveBitmapToGallery(b, String.valueOf(System.currentTimeMillis()));
+                Toast.makeText(getActivity(), "Screenshot is saved", Toast.LENGTH_SHORT).show();
+
             }
         });
 
@@ -152,9 +152,7 @@ public class FragmentSensor extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-
         sensorManager.unregisterListener(listener);
-        timer.cancel();
     }
 
     // must override for listener
