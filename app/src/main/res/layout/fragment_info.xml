@@ -10,32 +10,28 @@
 
     <TextView
         android:id="@+id/tvInformation"
-        android:textSize="30sp"
-        android:layout_margin="5dp"
+        style="@style/BigFont"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/information_about_phone" />
 
     <TextView
         android:id="@+id/tvIp"
-        android:textSize="20sp"
-        android:layout_margin="5dp"
+        style="@style/NormalFont"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/ip" />
 
     <TextView
         android:id="@+id/tvModel"
-        android:textSize="20sp"
-        android:layout_margin="5dp"
+        style="@style/NormalFont"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/model" />
 
     <TextView
         android:id="@+id/tvVersion"
-        android:textSize="20sp"
-        android:layout_margin="5dp"
+        style="@style/NormalFont"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/version" />

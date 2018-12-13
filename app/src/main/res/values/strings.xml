@@ -22,7 +22,7 @@
     <string name="sign_in">Sign in</string>
     <string name="github_image">github_image</string>
     <string name="username">username</string>
-    <string name="information_about_phone">Information about phone:</string>
+    <string name="information_about_phone">About phone</string>
     <string name="ip">IP: </string>
     <string name="model">Model: </string>
     <string name="version">Version: </string>
@@ -34,4 +34,6 @@
     <string name="remote_error_message">remote_error_message</string>
     <string name="unknown_error_message">unknown_error_message</string>
     <string name="network_error_message">network_error_message</string>
+    <string name="take_photo">Take photo</string>
+    <string name="save_photo">Save photo</string>
 </resources>
