@@ -16,11 +16,21 @@
         android:text="@string/information_about_phone" />
 
     <TextView
-        android:id="@+id/tvIp"
+        android:id="@+id/wifiIpTV"
         style="@style/NormalFont"
+        android:textSize="20sp"
+        android:layout_margin="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/ip" />
+        android:text="@string/wifiIP" />
+
+    <TextView
+        android:id="@+id/mobileIpTV"
+        android:textSize="20sp"
+        android:layout_margin="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/mobileIP" />
 
     <TextView
         android:id="@+id/tvModel"

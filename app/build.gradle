@@ -38,5 +38,4 @@ dependencies {
     implementation 'com.yandex.android:places:3.1.2'
     implementation 'com.yandex.android:search:3.1.2'
     implementation 'com.yandex.android:transport:3.1.2'
-
 }

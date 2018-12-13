@@ -16,6 +16,6 @@ public class App extends Application {
         MapKitFactory.initialize(this);
         TransportFactory.initialize(this);
 
-        //Вообще все важные инициализации надо проводить тут - где
+        //Вообще все важные инициализации надо проводить тут - где инициализация идет через статик методы
     }
 }
