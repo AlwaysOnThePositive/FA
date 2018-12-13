@@ -2,6 +2,8 @@ package dmitry.com.facultativeapp;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 
 import android.os.Bundle;
@@ -18,6 +20,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.ncapdevi.fragnav.FragNavController;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import dmitry.com.facultativeapp.fragments.FragmentContacts;
 import dmitry.com.facultativeapp.fragments.FragmentInfo;
 import dmitry.com.facultativeapp.fragments.FragmentMap;
@@ -27,11 +34,8 @@ import dmitry.com.facultativeapp.fragments.FragmentSensor;
 public class ActivityMain extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private FragmentRepo fRepo;
-    private FragmentMap fMap;
-    private FragmentContacts fContacts;
-    private FragmentInfo fInfo;
-    private FragmentSensor fSensor;
+    private FragNavController fragNavController;
+    DrawerLayout drawer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +55,7 @@ public class ActivityMain extends AppCompatActivity
             }
         });
 
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -64,24 +68,31 @@ public class ActivityMain extends AppCompatActivity
         TextView uName = navigationView.getHeaderView(0).findViewById(R.id.githubName);
         TextView uCom = navigationView.getHeaderView(0).findViewById(R.id.githubCom);
 
-        Intent intent = getIntent();
-        String name = intent.getStringExtra("login");
+        String name = getIntent().getStringExtra("login");
         uName.setText(name);
         String visit = "Visit: ";
         String com = ".com";
         name = visit + name + com;
         uCom.setText(name);
 
-        fRepo = new FragmentRepo();
-        fMap = new FragmentMap();
-        fContacts = new FragmentContacts();
-        fInfo = new FragmentInfo();
-        fSensor = new FragmentSensor();
+        //Все что нужно для включения навигации через bottomNavigation
+        fragNavController = new FragNavController(getSupportFragmentManager(), R.id.container);
+        //Список с нашими фрагментами
+        List<Fragment> rootFragments = new ArrayList<>();
+        rootFragments.add(new FragmentRepo());
+        rootFragments.add(new FragmentMap());
+        rootFragments.add(new FragmentContacts());
+        rootFragments.add(new FragmentInfo());
+        rootFragments.add(new FragmentSensor());
+        fragNavController.setRootFragments(rootFragments);
+        //Вот тут кароче много чего интересного - смотреть в документации
+        fragNavController.setFragmentHideStrategy(FragNavController.HIDE);
+        //!!! инициализация нашего контроллера!!! ОБЯЗАТЕЛЬНР ИНАЧЕ ОШИБКА
+        fragNavController.initialize(FragNavController.TAB1, savedInstanceState);
     }
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -91,16 +102,12 @@ public class ActivityMain extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.activity_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
@@ -114,29 +121,21 @@ public class ActivityMain extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
-
-        FragmentTransaction fTrans = getSupportFragmentManager().beginTransaction();
-
         if (id == R.id.nav_repo) {
-            fTrans.replace(R.id.container, fRepo);
-
+            fragNavController.switchTab(FragNavController.TAB1);
         } else if (id == R.id.nav_map) {
-            fTrans.replace(R.id.container, fMap);
+            fragNavController.switchTab(FragNavController.TAB2);
         } else if (id == R.id.nav_contacts) {
-            fTrans.replace(R.id.container, fContacts);
+            fragNavController.switchTab(FragNavController.TAB3);
         } else if (id == R.id.nav_info) {
-            fTrans.replace(R.id.container, fInfo);
+            fragNavController.switchTab(FragNavController.TAB4);
         } else if (id == R.id.nav_sensor) {
-            fTrans.replace(R.id.container, fSensor);
+            fragNavController.switchTab(FragNavController.TAB5);
         } else if (id == R.id.nav_logout) {
-
+            //Доделать кнопку выхода из приложения
         }
 
-        fTrans.commit();
-
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
