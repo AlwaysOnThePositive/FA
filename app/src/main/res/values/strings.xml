@@ -24,7 +24,7 @@
     <string name="username">username</string>
     <string name="information_about_phone">About phone</string>
     <string name="wifiIP">WI-FI ip: </string>
-    <string name="mobileIP">mobile ip: </string>
+    <string name="mobileIP">Mobile ip: </string>
     <string name="model">Model: </string>
     <string name="version">Version: </string>
     <string name="accelerometer">Accelerometer:</string>

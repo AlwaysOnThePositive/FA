@@ -1,5 +1,6 @@
 package dmitry.com.facultativeapp.fragments;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -31,15 +32,6 @@ public class FragmentInfo extends Fragment {
         tvModel = v.findViewById(R.id.tvModel);
         tvVersion = v.findViewById(R.id.tvVersion);
 
-//        WifiManager wifiManager = (WifiManager) Objects.requireNonNull(getActivity()).getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-//        assert wifiManager != null;
-//        String ip = Formatter.formatIpAddress(wifiManager.getConnectionInfo().getIpAddress());
-
-//        String modelValue = Build.MODEL;
-//        tvModel.setText(tvModel.getText() + modelValue);
-
-//        String version = Build.VERSION.RELEASE;
-//        tvVersion.setText(tvVersion.getText() + version);
         return  v;
     }
 
@@ -50,8 +42,14 @@ public class FragmentInfo extends Fragment {
         String mobileIP = Instruments.getMobileIPAddress();
         String wifiIP = Instruments.getWifiIPAddress(getContext());
 
-        wifiIpTV.setText(wifiIP);
-        mobileIpTV.setText(mobileIP);
+        wifiIpTV.setText("IPv4: " + wifiIP);
+        mobileIpTV.setText("IPv6: " + mobileIP);
+
+        String modelValue = Build.MODEL;
+        tvModel.setText("Model: " + modelValue);
+
+        String version = Build.VERSION.RELEASE;
+        tvVersion.setText("Version: " + version);
 
     }
 }

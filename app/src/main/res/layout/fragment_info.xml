@@ -18,16 +18,13 @@
     <TextView
         android:id="@+id/wifiIpTV"
         style="@style/NormalFont"
-        android:textSize="20sp"
-        android:layout_margin="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/wifiIP" />
 
     <TextView
         android:id="@+id/mobileIpTV"
-        android:textSize="20sp"
-        android:layout_margin="5dp"
+        style="@style/NormalFont"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/mobileIP" />
