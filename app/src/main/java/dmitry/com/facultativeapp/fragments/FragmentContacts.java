@@ -1,6 +1,5 @@
 package dmitry.com.facultativeapp.fragments;
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,9 +10,7 @@ import dmitry.com.facultativeapp.R;
 
 public class FragmentContacts extends Fragment {
 
-    public FragmentContacts() {
-        // Required empty public constructor
-    }
+    //Класс который отвечает за отображение контактов
 
 //    public static FragmentContacts newInstance(String param1, String param2) {
 //        FragmentContacts fragment = new FragmentContacts();
@@ -31,14 +28,5 @@ public class FragmentContacts extends Fragment {
         return inflater.inflate(R.layout.fragment_contacts, container, false);
     }
 
-//    @Override
-//    public void onAttach(Context context) {
-//        super.onAttach(context);
-//        if (context instanceof OnFragmentInteractionListener) {
-//            mListener = (OnFragmentInteractionListener) context;
-//        } else {
-//            throw new RuntimeException(context.toString()
-//                    + " must implement OnFragmentInteractionListener");
-//        }
-//    }
+
 }

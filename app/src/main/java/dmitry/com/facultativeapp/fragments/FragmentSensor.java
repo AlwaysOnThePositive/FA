@@ -28,6 +28,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.Objects;
 import java.util.Timer;
+import java.util.TimerTask;
 
 import dmitry.com.facultativeapp.R;
 import dmitry.com.facultativeapp.helpers.Instruments;
@@ -40,6 +41,8 @@ public class FragmentSensor extends Fragment {
     private Timer timer;
     private StringBuilder sb = new StringBuilder();
     private Bitmap b;
+    private SensorEventListener listener;
+    private float[] valueAccelerometer = new float[3];
 
     private Button btnTakePhoto;
     private Button btnSavePhoto;
@@ -93,6 +96,20 @@ public class FragmentSensor extends Fragment {
                 saveBitmapToGallery(b, String.valueOf(System.currentTimeMillis()));
             }
         });
+
+        //Работа с датчиками
+        listener = new SensorEventListener() {
+            @Override
+            public void onSensorChanged(SensorEvent event) {
+                System.arraycopy(event.values, 0, valueAccelerometer, 0, 3);
+                showInfo();
+            }
+
+            @Override
+            public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+            }
+        };
     }
 
     private void saveBitmapToGallery(Bitmap bitmap, String fName) {
@@ -113,7 +130,7 @@ public class FragmentSensor extends Fragment {
         myDir.mkdirs();
         fName += ".jpg";
         File file = new File(myDir, fName);
-        if (!file.exists()) {
+        if (file.exists()) {
             file.delete();
         }
         try {
@@ -133,53 +150,21 @@ public class FragmentSensor extends Fragment {
         });
     }
 
-    float[] valueAccelerometer = new float[3];
-    // Accelerometer's listener
-    SensorEventListener listener = new SensorEventListener() {
-        @Override
-        public void onSensorChanged(SensorEvent event) {
-            System.arraycopy(event.values, 0, valueAccelerometer, 0, 3);
-        }
+    // must override for listener
+    @Override
+    public void onPause() {
+        super.onPause();
 
-        @Override
-        public void onAccuracyChanged(Sensor sensor, int accuracy) {
+        sensorManager.unregisterListener(listener);
+        timer.cancel();
+    }
 
-        }
-    };
-
-//    // must override for listener
-//    @Override
-//    public void onPause() {
-//        super.onPause();
-//
-//        sensorManager.unregisterListener(listener);
-//        timer.cancel();
-//    }
-//
-//    // must override for listener
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-//
-//        sensorManager.registerListener(listener, sensor, SensorManager.SENSOR_DELAY_NORMAL);
-//
-//        timer = new Timer();
-//
-//        // СДЕЛАТЬ ТАЙМЕР!
-//        TimerTask task = new TimerTask() {
-//            @Override
-//            public void run() {
-//                runOnUiThread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        showInfo();
-//                    }
-//                });
-//            }
-//        };
-//        timer.schedule(task, 0, 400);
-//
-//    }
+    // must override for listener
+    @Override
+    public void onResume() {
+        super.onResume();
+        sensorManager.registerListener(listener, sensor, SensorManager.SENSOR_DELAY_NORMAL);
+    }
 
     void showInfo() {
         sb.setLength(0);
@@ -192,9 +177,4 @@ public class FragmentSensor extends Fragment {
         return String.format("%1$.1f\t\t%2$.1f\t\t%3$.1f", values[0], values[1],
                 values[2]);
     }
-
-
-
-
-
 }
