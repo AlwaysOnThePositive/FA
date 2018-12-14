@@ -26,12 +26,10 @@ public class FragmentInfo extends Fragment {
                              Bundle savedInstanceState) {
 
         View v = inflater.inflate(R.layout.fragment_info, container, false);
-
         wifiIpTV = v.findViewById(R.id.wifiIpTV);
         mobileIpTV = v.findViewById(R.id.mobileIpTV);
         tvModel = v.findViewById(R.id.tvModel);
         tvVersion = v.findViewById(R.id.tvVersion);
-
         return  v;
     }
 
@@ -50,6 +48,5 @@ public class FragmentInfo extends Fragment {
 
         String version = Build.VERSION.RELEASE;
         tvVersion.setText("Version: " + version);
-
     }
 }

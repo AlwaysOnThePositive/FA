@@ -37,4 +37,6 @@
     <string name="network_error_message">network_error_message</string>
     <string name="take_photo">Take photo</string>
     <string name="save_photo">Save photo</string>
+    <string name="token">token</string>
+    <string name="prefs_name">prefs_name</string>
 </resources>
