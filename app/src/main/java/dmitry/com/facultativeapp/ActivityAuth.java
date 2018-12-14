@@ -46,7 +46,6 @@ public class ActivityAuth extends AppCompatActivity {
         textLogin = findViewById(R.id.login);
         textPassword = findViewById(R.id.password);
         btnSignIn = findViewById(R.id.buttonSignIn);
-
     }
 
     public void clickSignIn (View view) {
