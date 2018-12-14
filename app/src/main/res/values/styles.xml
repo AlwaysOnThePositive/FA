@@ -19,19 +19,30 @@
     </style>
 
     <style name="BigFont">
-        <item name="android:layout_marginBottom">10dp</item>
-        <item name="android:layout_marginStart">10dp</item>
-        <item name="android:layout_marginEnd">10dp</item>
-        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:layout_marginStart">8dp</item>
+        <item name="android:layout_marginEnd">8dp</item>
+        <item name="android:layout_marginTop">8dp</item>
         <item name="android:textSize">30sp</item>
+        <item name="android:textColor">@android:color/black</item>
     </style>
 
     <style name="NormalFont">
         <item name="android:textSize">20sp</item>
-        <item name="android:layout_marginBottom">10dp</item>
-        <item name="android:layout_marginStart">10dp</item>
-        <item name="android:layout_marginEnd">10dp</item>
-        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:layout_marginStart">8dp</item>
+        <item name="android:layout_marginEnd">8dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="SmallFont">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:layout_marginStart">8dp</item>
+        <item name="android:layout_marginEnd">8dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
     </style>
 
     <!-- Кастомная AppTheme.Launcher. Устанавливает в качестве фона вашу drawable -->

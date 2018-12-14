@@ -39,4 +39,8 @@
     <string name="save_photo">Save photo</string>
     <string name="token">token</string>
     <string name="prefs_name">prefs_name</string>
+    <string name="phone_number">Phone number -</string>
+    <string name="name">Name -</string>
+    <string name="repositories">Repositories</string>
+    <string name="contacts">Contacts</string>
 </resources>

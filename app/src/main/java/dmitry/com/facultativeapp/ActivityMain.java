@@ -26,6 +26,7 @@ import dmitry.com.facultativeapp.fragments.FragmentInfo;
 import dmitry.com.facultativeapp.fragments.FragmentMap;
 import dmitry.com.facultativeapp.fragments.FragmentRepo;
 import dmitry.com.facultativeapp.fragments.FragmentSensor;
+import dmitry.com.facultativeapp.helpers.App;
 
 public class ActivityMain extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -51,15 +52,12 @@ public class ActivityMain extends AppCompatActivity
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        TextView uName = navigationView.getHeaderView(0).findViewById(R.id.githubName);
-        TextView uCom = navigationView.getHeaderView(0).findViewById(R.id.githubCom);
+        App.getUSERNAME();
 
-        String name = getIntent().getStringExtra("login");
+        TextView uName = navigationView.getHeaderView(0).findViewById(R.id.githubName);
+
+        String name = App.getUSERNAME();
         uName.setText(name);
-        String visit = "Visit: ";
-        String com = ".com";
-        name = visit + name + com;
-        uCom.setText(name);
 
         //Все что нужно для включения навигации через bottomNavigation
         fragNavController = new FragNavController(getSupportFragmentManager(), R.id.container);

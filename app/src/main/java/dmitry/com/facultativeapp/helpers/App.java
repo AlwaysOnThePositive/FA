@@ -1,6 +1,7 @@
 package dmitry.com.facultativeapp.helpers;
 
 import android.app.Application;
+import android.content.Intent;
 import android.content.SharedPreferences;
 
 import com.yandex.mapkit.MapKitFactory;
@@ -15,9 +16,13 @@ public class App extends Application {
     //Класс для управления нетклиентом
     private static final String AUTH_URL = "https://github.com/";
     private static final String BASE_URL = "https://api.github.com/";
-    private static final String USERNAME = "zibellon";
+    private static final String USERNAME = "AlwaysOnThePositive";
     private static NetClient netClient;
     private static SharedPreferences sharedPreferences;
+
+    public static String getUsername() {
+        return USERNAME;
+    }
 
     @Override
     public void onCreate() {

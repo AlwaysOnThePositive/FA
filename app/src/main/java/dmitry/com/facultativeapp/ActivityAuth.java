@@ -21,16 +21,14 @@ import retrofit2.Response;
 
 public class ActivityAuth extends AppCompatActivity {
 
-    EditText textLogin;
-    EditText textPassword;
     Button btnSignIn;
 
     private String LOG = "MyLog";
 
     //ClientId приложения на гите
-    private String cliendId = "830e851082bc0c849162";
+    private String cliendId = "fcd97c7a329b55f7498d";
     //ClientSecret приложения на гите
-    private String clientSecret = "58c5b23435daf4ea2c2dc099a5be5ed7a7f75678";
+    private String clientSecret = "84e8d8db1caf8de9c62bc1c254bbedd65f402b41";
     //CallBack для окончания авторизации
     private String redirectUri = "dmitry.com.facultativeapp://callback";
     //Ссылка по которой будет производится авторизация
@@ -43,8 +41,6 @@ public class ActivityAuth extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth);
 
-        textLogin = findViewById(R.id.login);
-        textPassword = findViewById(R.id.password);
         btnSignIn = findViewById(R.id.buttonSignIn);
     }
 
@@ -71,7 +67,7 @@ public class ActivityAuth extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<AccessToken> call, Response<AccessToken> response) {
                     if (response.isSuccessful()) {
-                        Toast.makeText(ActivityAuth.this, "Токен = " + response.body().getAccessToken(), Toast.LENGTH_LONG).show();
+//                        Toast.makeText(ActivityAuth.this, "Токен = " + response.body().getAccessToken(), Toast.LENGTH_LONG).show();
                         App.setAccessToken(response.body().getAccessToken());
                         App.setBaseNetClient();
                         goMainActivity();

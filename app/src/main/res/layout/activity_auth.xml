@@ -7,57 +7,28 @@
     tools:context=".ActivityAuth">
 
 
-    <EditText
-        android:id="@+id/login"
-        android:layout_width="200sp"
-        android:layout_height="40sp"
-        android:hint="@string/login"
-        android:autofillHints="@string/username"
-        android:inputType="textPersonName"
-        android:textSize="20sp"
-        android:padding="5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.575" />
-
-    <EditText
-        android:id="@+id/password"
-        android:layout_width="200sp"
-        android:layout_height="40sp"
-        android:textSize="20sp"
-        android:padding="5dp"
-        android:hint="@string/password"
-        android:autofillHints="@string/password"
-        android:inputType="textPassword"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login"
-        app:layout_constraintVertical_bias="0.122" />
-
     <Button
         android:id="@+id/buttonSignIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="92dp"
         android:onClick="clickSignIn"
         android:text="@string/sign_in"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password"
-        app:layout_constraintVertical_bias="0.108" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
+        android:layout_width="185dp"
+        android:layout_height="195dp"
         android:contentDescription="@string/github_image"
-        app:layout_constraintBottom_toTopOf="@+id/password"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.396"
+        app:layout_constraintVertical_bias="0.377"
         app:srcCompat="@drawable/github_logo" />
 </android.support.constraint.ConstraintLayout>
