@@ -70,6 +70,7 @@ public class ActivityAuth extends AppCompatActivity {
 //                        Toast.makeText(ActivityAuth.this, "Токен = " + response.body().getAccessToken(), Toast.LENGTH_LONG).show();
                         App.setAccessToken(response.body().getAccessToken());
                         App.setBaseNetClient();
+
                         goMainActivity();
                     } else {
                         Log.d(LOG, "Код ошибки = " + response.code());

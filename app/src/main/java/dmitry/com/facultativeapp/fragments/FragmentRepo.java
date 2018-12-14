@@ -59,7 +59,7 @@ public class FragmentRepo extends Fragment {
 
     public void loadList() {
 
-        App.getNetClient().getRepos(App.getUSERNAME(), new Callback<List<GitHubRepo>>() {
+        App.getNetClient().getRepos(App.getUsername(), new Callback<List<GitHubRepo>>() {
             @Override
             public void onResponse(Call<List<GitHubRepo>> call, Response<List<GitHubRepo>> response) {
                 if (response.isSuccessful()) {

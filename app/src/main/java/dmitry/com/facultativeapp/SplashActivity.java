@@ -13,6 +13,7 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //Смотрим если есть accessToken то стартуем главное активити - если нету то активити авторизации
         if (App.getAccessToken() != null) {
             Intent intent = new Intent(this, ActivityMain.class);
             startActivity(intent);

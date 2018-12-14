@@ -4,6 +4,7 @@ import java.util.List;
 
 import dmitry.com.facultativeapp.Model.AccessToken;
 import dmitry.com.facultativeapp.Model.GitHubRepo;
+import dmitry.com.facultativeapp.Model.User;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -23,6 +24,10 @@ public interface Api {
             @Field("client_id") String clientId,
             @Field("client_secret") String clientSecret,
             @Field("code") String code);
+
+    //Метод для получения юзера по токену
+    @GET("/user")
+    Call<User>getCurrentUser();
 
     //метод для получения репозиторие пользователя
     @GET("/users/{user}/repos")
