@@ -30,6 +30,7 @@ public class App extends Application {
         TransportFactory.initialize(this);
 
         sharedPreferences = getSharedPreferences(String.valueOf(R.string.prefs_name), MODE_PRIVATE);
+        USERNAME = sharedPreferences.getString(String.valueOf(R.string.username), null);
         if (sharedPreferences.getString(String.valueOf(R.string.token), null) != null) {
             setBaseNetClient();
         } else {
@@ -75,5 +76,6 @@ public class App extends Application {
 
     public static void setUsername(String username) {
         USERNAME = username;
+        sharedPreferences.edit().putString(String.valueOf(R.string.username), username).apply();
     }
 }
