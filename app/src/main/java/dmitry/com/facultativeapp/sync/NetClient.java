@@ -11,6 +11,7 @@ import java.util.concurrent.TimeUnit;
 
 import dmitry.com.facultativeapp.Model.AccessToken;
 import dmitry.com.facultativeapp.Model.GitHubRepo;
+import dmitry.com.facultativeapp.Model.User;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import retrofit2.Callback;
@@ -54,8 +55,15 @@ public class NetClient {
         api.getAccessToken(clientId, clientSecret, code).enqueue(callback);
     }
 
+    //Метод получения списка репозиториев
     public void getRepos(String userName, Callback<List<GitHubRepo>> callback) {
         Log.d(LOG_TAG, api.getReposForUser(userName).request().url().toString());
         api.getReposForUser(userName).enqueue(callback);
+    }
+
+    //Метод получения текущего пользователя по токену
+    public void getCurrentUser(Callback<User> callback) {
+        Log.d(LOG_TAG, api.getCurrentUser().request().url().toString());
+        api.getCurrentUser().enqueue(callback);
     }
 }

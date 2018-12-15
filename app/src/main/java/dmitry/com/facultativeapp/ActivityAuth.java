@@ -14,6 +14,7 @@ import android.widget.Toast;
 import java.io.IOException;
 
 import dmitry.com.facultativeapp.Model.AccessToken;
+import dmitry.com.facultativeapp.Model.User;
 import dmitry.com.facultativeapp.helpers.App;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,9 +27,9 @@ public class ActivityAuth extends AppCompatActivity {
     private String LOG = "MyLog";
 
     //ClientId приложения на гите
-    private String cliendId = "fcd97c7a329b55f7498d";
+    private String cliendId = "830e851082bc0c849162";
     //ClientSecret приложения на гите
-    private String clientSecret = "84e8d8db1caf8de9c62bc1c254bbedd65f402b41";
+    private String clientSecret = "58c5b23435daf4ea2c2dc099a5be5ed7a7f75678";
     //CallBack для окончания авторизации
     private String redirectUri = "dmitry.com.facultativeapp://callback";
     //Ссылка по которой будет производится авторизация
@@ -70,8 +71,7 @@ public class ActivityAuth extends AppCompatActivity {
 //                        Toast.makeText(ActivityAuth.this, "Токен = " + response.body().getAccessToken(), Toast.LENGTH_LONG).show();
                         App.setAccessToken(response.body().getAccessToken());
                         App.setBaseNetClient();
-
-                        goMainActivity();
+                        getUserName();
                     } else {
                         Log.d(LOG, "Код ошибки = " + response.code());
                         try {
@@ -88,6 +88,30 @@ public class ActivityAuth extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    private void getUserName() {
+        App.getNetClient().getCurrentUser(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                if (response.isSuccessful()) {
+                    App.setUsername(response.body().getLogin());
+                    goMainActivity();
+                } else {
+                    Log.d(LOG, "Код ошибки = " + response.code());
+                    try {
+                        Log.d(LOG, "Сообщение ошибки = " + response.errorBody().string());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
     }
 
     //Метод для перехода на след активити - которое головное

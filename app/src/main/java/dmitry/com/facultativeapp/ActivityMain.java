@@ -9,25 +9,34 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.ncapdevi.fragnav.FragNavController;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import dmitry.com.facultativeapp.Model.User;
 import dmitry.com.facultativeapp.fragments.FragmentContacts;
 import dmitry.com.facultativeapp.fragments.FragmentInfo;
 import dmitry.com.facultativeapp.fragments.FragmentMap;
 import dmitry.com.facultativeapp.fragments.FragmentRepo;
 import dmitry.com.facultativeapp.fragments.FragmentSensor;
 import dmitry.com.facultativeapp.helpers.App;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ActivityMain extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private String LOG = "Logs";
+
     private FragNavController fragNavController;
+    private TextView uName;
     DrawerLayout drawer;
 
     @Override
@@ -48,10 +57,9 @@ public class ActivityMain extends AppCompatActivity
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        TextView uName = navigationView.getHeaderView(0).findViewById(R.id.githubName);
+        uName = navigationView.getHeaderView(0).findViewById(R.id.githubName);
 
-        String name = App.getUsername();
-        uName.setText(name);
+        uName.setText(App.getUsername());
 
         //Все что нужно для включения навигации через bottomNavigation
         fragNavController = new FragNavController(getSupportFragmentManager(), R.id.container);

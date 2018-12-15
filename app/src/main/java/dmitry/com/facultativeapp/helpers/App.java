@@ -16,7 +16,7 @@ public class App extends Application {
     //Класс для управления нетклиентом
     private static final String AUTH_URL = "https://github.com/";
     private static final String BASE_URL = "https://api.github.com/";
-    private static String USERNAME = "zibellon";
+    private static String USERNAME;
     private static NetClient netClient;
     private static SharedPreferences sharedPreferences;
 
@@ -53,18 +53,22 @@ public class App extends Application {
         netClient = new NetClient(BASE_URL, getAccessToken());
     }
 
+    //Метод сохранения токена на устройстве
     public static void setAccessToken(String token) {
         sharedPreferences.edit().putString(String.valueOf(R.string.token), token).apply();
     }
 
+    //Метод получения токена с устройства
     public static String getAccessToken() {
         return sharedPreferences.getString(String.valueOf(R.string.token), null);
     }
 
+    //Метод очистки токена на устройстве
     public static void clearAccessToken(String token) {
         sharedPreferences.edit().putString(String.valueOf(R.string.token), null).apply();
     }
 
+    //Метод получения
     public static String getUsername() {
         return USERNAME;
     }
