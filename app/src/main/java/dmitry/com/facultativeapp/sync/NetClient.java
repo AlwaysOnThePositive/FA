@@ -66,4 +66,10 @@ public class NetClient {
         Log.d(LOG_TAG, api.getCurrentUser().request().url().toString());
         api.getCurrentUser().enqueue(callback);
     }
+
+    //метод для сброса авторизации
+    public void logOut(String clientId, String token, Callback<String> callback) {
+        Log.d(LOG_TAG, api.logOut(clientId, token).request().url().toString());
+        api.logOut(clientId, token).enqueue(callback);
+    }
 }

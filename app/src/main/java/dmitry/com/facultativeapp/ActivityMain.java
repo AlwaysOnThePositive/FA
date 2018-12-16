@@ -1,4 +1,5 @@
 package dmitry.com.facultativeapp;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 
@@ -100,10 +101,47 @@ public class ActivityMain extends AppCompatActivity
         } else if (id == R.id.nav_sensor) {
             fragNavController.switchTab(FragNavController.TAB5);
         } else if (id == R.id.nav_logout) {
-            //Доделать кнопку выхода из приложения
+            logOut();
         }
 
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    //Метод лдя выхода из приложения
+    private void logOut() {
+
+        App.getNetClient().logOut(App.getCliendId(), App.getAccessToken(),
+                new Callback<String>() {
+                    @Override
+                    public void onResponse(Call<String> call, Response<String> response) {
+                        if (response.isSuccessful()) {
+
+                            Log.d(LOG, "Ответ при выходе = " + response.body());
+                            App.clearAccessToken(null);
+                            App.clearUserName(null);
+                            finishActivity();
+                        } else {
+                            Log.d(LOG, "Код ошибки = " + response.code());
+                            try {
+                                Log.d(LOG, "Сообщение ошибки = " + response.errorBody().string());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<String> call, Throwable t) {
+                        t.printStackTrace();
+                    }
+                }
+        );
+    }
+
+    private void finishActivity() {
+        Intent intent = new Intent(this, SplashActivity.class);
+        startActivity(intent);
+        finishAffinity();
     }
 }

@@ -16,6 +16,12 @@ public class App extends Application {
     //Класс для управления нетклиентом
     private static final String AUTH_URL = "https://github.com/";
     private static final String BASE_URL = "https://api.github.com/";
+    //ClientId приложения на гите
+    private static final String cliendId = "830e851082bc0c849162";
+    //ClientSecret приложения на гите
+    private static final String clientSecret = "58c5b23435daf4ea2c2dc099a5be5ed7a7f75678";
+    //CallBack для окончания авторизации
+    private static final String redirectUri = "dmitry.com.facultativeapp://callback";
     private static String USERNAME;
     private static NetClient netClient;
     private static SharedPreferences sharedPreferences;
@@ -66,7 +72,24 @@ public class App extends Application {
 
     //Метод очистки токена на устройстве
     public static void clearAccessToken(String token) {
-        sharedPreferences.edit().putString(String.valueOf(R.string.token), null).apply();
+        sharedPreferences.edit().putString(String.valueOf(R.string.token), token).apply();
+    }
+
+    //Мтеод для очистки пользователя
+    public static void clearUserName(String userName) {
+        sharedPreferences.edit().putString(String.valueOf(R.string.username), userName).apply();
+    }
+
+    public static String getCliendId() {
+        return cliendId;
+    }
+
+    public static String getClientSecret() {
+        return clientSecret;
+    }
+
+    public static String getRedirectUri() {
+        return redirectUri;
     }
 
     //Метод получения

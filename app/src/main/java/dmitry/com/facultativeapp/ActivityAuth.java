@@ -26,16 +26,6 @@ public class ActivityAuth extends AppCompatActivity {
 
     private String LOG = "MyLog";
 
-    //ClientId приложения на гите
-    private String cliendId = "830e851082bc0c849162";
-    //ClientSecret приложения на гите
-    private String clientSecret = "58c5b23435daf4ea2c2dc099a5be5ed7a7f75678";
-    //CallBack для окончания авторизации
-    private String redirectUri = "dmitry.com.facultativeapp://callback";
-    //Ссылка по которой будет производится авторизация
-    private String myUrlGit = "https://github.com/login/oauth/authorize?client_id=" + cliendId +
-            "&scope=repo&redirect_uri=" + redirectUri;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +41,8 @@ public class ActivityAuth extends AppCompatActivity {
 
     //метод для входа в акк
     private void signIn() {
+        String myUrlGit = "https://github.com/login/oauth/authorize?client_id=" + App.getCliendId() +
+                "&scope=repo&redirect_uri=" + App.getRedirectUri();
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(myUrlGit));
         startActivity(intent);
     }
@@ -60,11 +52,11 @@ public class ActivityAuth extends AppCompatActivity {
         super.onResume();
 
         Uri uri = getIntent().getData();
-        if (uri != null && uri.toString().startsWith(redirectUri)) {
+        if (uri != null && uri.toString().startsWith(App.getRedirectUri())) {
 
             String code = uri.getQueryParameter("code");
 
-            App.getNetClient().getAccessToken(cliendId, clientSecret, code, new Callback<AccessToken>() {
+            App.getNetClient().getAccessToken(App.getCliendId(), App.getClientSecret(), code, new Callback<AccessToken>() {
                 @Override
                 public void onResponse(Call<AccessToken> call, Response<AccessToken> response) {
                     if (response.isSuccessful()) {
