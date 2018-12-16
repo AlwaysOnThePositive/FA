@@ -13,13 +13,24 @@ import dmitry.com.facultativeapp.sync.NetClient;
 public class App extends Application {
 
 
+    // номер приложения на гите
+    private static final String APP_ID = "952021";
     //Класс для управления нетклиентом
     private static final String AUTH_URL = "https://github.com/";
     private static final String BASE_URL = "https://api.github.com/";
+
+//    // boec
+//    //ClientId приложения на гите
+//    private static final String cliendId = "830e851082bc0c849162";
+//    //ClientSecret приложения на гите
+//    private static final String clientSecret = "58c5b23435daf4ea2c2dc099a5be5ed7a7f75678";
+
+    // me
     //ClientId приложения на гите
-    private static final String cliendId = "830e851082bc0c849162";
+    private static final String cliendId = "fcd97c7a329b55f7498d";
     //ClientSecret приложения на гите
-    private static final String clientSecret = "58c5b23435daf4ea2c2dc099a5be5ed7a7f75678";
+    private static final String clientSecret = "84e8d8db1caf8de9c62bc1c254bbedd65f402b41";
+
     //CallBack для окончания авторизации
     private static final String redirectUri = "dmitry.com.facultativeapp://callback";
     private static String USERNAME;
@@ -71,8 +82,8 @@ public class App extends Application {
     }
 
     //Метод очистки токена на устройстве
-    public static void clearAccessToken(String token) {
-        sharedPreferences.edit().putString(String.valueOf(R.string.token), token).apply();
+    public static void clearAccessToken() {
+        sharedPreferences.edit().putString(String.valueOf(R.string.token), null).apply();
     }
 
     //Мтеод для очистки пользователя
@@ -100,5 +111,9 @@ public class App extends Application {
     public static void setUsername(String username) {
         USERNAME = username;
         sharedPreferences.edit().putString(String.valueOf(R.string.username), username).apply();
+    }
+
+    public static String getAppId() {
+        return APP_ID;
     }
 }

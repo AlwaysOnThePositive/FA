@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ncapdevi.fragnav.FragNavController;
 
@@ -27,9 +28,12 @@ import dmitry.com.facultativeapp.fragments.FragmentMap;
 import dmitry.com.facultativeapp.fragments.FragmentRepo;
 import dmitry.com.facultativeapp.fragments.FragmentSensor;
 import dmitry.com.facultativeapp.helpers.App;
+import dmitry.com.facultativeapp.sync.Api;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ActivityMain extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -37,8 +41,7 @@ public class ActivityMain extends AppCompatActivity
     private String LOG = "Logs";
 
     private FragNavController fragNavController;
-    private TextView uName;
-    DrawerLayout drawer;
+    private DrawerLayout drawer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,8 +61,7 @@ public class ActivityMain extends AppCompatActivity
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        uName = navigationView.getHeaderView(0).findViewById(R.id.githubName);
-
+        TextView uName = navigationView.getHeaderView(0).findViewById(R.id.githubName);
         uName.setText(App.getUsername());
 
         //Все что нужно для включения навигации через bottomNavigation
@@ -108,35 +110,42 @@ public class ActivityMain extends AppCompatActivity
         return true;
     }
 
+
+    // ДОРАБОТАТЬ !!!!!
+
     //Метод лдя выхода из приложения
     private void logOut() {
 
-        App.getNetClient().logOut(App.getCliendId(), App.getAccessToken(),
-                new Callback<String>() {
-                    @Override
-                    public void onResponse(Call<String> call, Response<String> response) {
-                        if (response.isSuccessful()) {
+        // удаляем токен
+        // https://github.com/settings/applications/952021/revoke_all_tokens
+//        Retrofit retrofit = new Retrofit.Builder()
+//                .baseUrl("https://github.com/")
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .build();
+//        Api api = retrofit.create(Api.class);
+//        Call<String> sendTokenCall = api.deleteToken();
+//        sendTokenCall.enqueue(new Callback<String>() {
+//            @Override
+//            public void onResponse(Call<String> call, Response<String> response) {
+//                if (response.isSuccessful()) {
+//                    Toast.makeText(ActivityMain.this, "token is deleted", Toast.LENGTH_SHORT)
+//                            .show();
+//                } else {
+//                    Toast.makeText(ActivityMain.this, "server returned a mistake", Toast
+//                            .LENGTH_SHORT).show();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<String> call, Throwable t) {
+//                Toast.makeText(ActivityMain.this, "error", Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
-                            Log.d(LOG, "Ответ при выходе = " + response.body());
-                            App.clearAccessToken(null);
-                            App.clearUserName(null);
-                            finishActivity();
-                        } else {
-                            Log.d(LOG, "Код ошибки = " + response.code());
-                            try {
-                                Log.d(LOG, "Сообщение ошибки = " + response.errorBody().string());
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }
 
-                    @Override
-                    public void onFailure(Call<String> call, Throwable t) {
-                        t.printStackTrace();
-                    }
-                }
-        );
+        Intent intent = new Intent(this, ActivityAuth.class);
+        startActivity(intent);
+
     }
 
     private void finishActivity() {

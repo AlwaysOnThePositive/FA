@@ -6,6 +6,7 @@ import dmitry.com.facultativeapp.Model.AccessToken;
 import dmitry.com.facultativeapp.Model.GitHubRepo;
 import dmitry.com.facultativeapp.Model.User;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -38,4 +39,10 @@ public interface Api {
     @DELETE("/applications/{clientId}/tokens/{token}")
     Call<String>logOut(@Path("clientId") String clientId,
                        @Path("token") String token);
+
+
+//    https://github.com/settings/applications/952021/revoke_all_tokens
+//    @POST("/settings/applications/952021/revoke_all_tokens")
+//    Call<String>deleteToken();
+
 }

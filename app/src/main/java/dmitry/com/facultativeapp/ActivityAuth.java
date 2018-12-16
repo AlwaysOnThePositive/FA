@@ -60,7 +60,7 @@ public class ActivityAuth extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<AccessToken> call, Response<AccessToken> response) {
                     if (response.isSuccessful()) {
-//                        Toast.makeText(ActivityAuth.this, "Токен = " + response.body().getAccessToken(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(ActivityAuth.this, "Токен = " + response.body().getAccessToken(), Toast.LENGTH_LONG).show();
                         App.setAccessToken(response.body().getAccessToken());
                         App.setBaseNetClient();
                         getUserName();
