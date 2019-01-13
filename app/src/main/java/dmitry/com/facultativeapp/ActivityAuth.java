@@ -24,7 +24,7 @@ public class ActivityAuth extends AppCompatActivity {
 
     Button btnSignIn;
 
-    private String LOG = "MyLog";
+    private String LOG = "TestLog";
 
 
     @Override
@@ -41,7 +41,8 @@ public class ActivityAuth extends AppCompatActivity {
 
     //метод для входа в акк
     private void signIn() {
-        String myUrlGit = "https://github.com/login/oauth/authorize?client_id=" + App.getCliendId() +
+        String myUrlGit = "https://github.com/login/oauth/authorize?client_id=" + App.getClientId
+                () +
                 "&scope=repo&redirect_uri=" + App.getRedirectUri();
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(myUrlGit));
         startActivity(intent);
@@ -56,7 +57,8 @@ public class ActivityAuth extends AppCompatActivity {
 
             String code = uri.getQueryParameter("code");
 
-            App.getNetClient().getAccessToken(App.getCliendId(), App.getClientSecret(), code, new Callback<AccessToken>() {
+            App.getNetClient().getAccessToken(App.getClientId(), App.getClientSecret(), code, new
+                    Callback<AccessToken>() {
                 @Override
                 public void onResponse(Call<AccessToken> call, Response<AccessToken> response) {
                     if (response.isSuccessful()) {
@@ -106,7 +108,6 @@ public class ActivityAuth extends AppCompatActivity {
         });
     }
 
-    //Метод для перехода на след активити - которое головное
     private void goMainActivity() {
         Intent intent = new Intent(this, ActivityMain.class);
         startActivity(intent);

@@ -123,7 +123,7 @@ public class ActivityMain extends AppCompatActivity
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         Api api = retrofit.create(Api.class);
-        Call<String> sendTokenCall = api.logout(App.getCliendId(), App.getAccessToken());
+        Call<String> sendTokenCall = api.logout(App.getClientId(), App.getAccessToken());
         sendTokenCall.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {

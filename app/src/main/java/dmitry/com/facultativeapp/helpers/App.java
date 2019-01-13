@@ -12,23 +12,13 @@ import dmitry.com.facultativeapp.sync.NetClient;
 
 public class App extends Application {
 
-
-    // номер приложения на гите
-    private static final String APP_ID = "952021";
     //Класс для управления нетклиентом
+
     private static final String AUTH_URL = "https://github.com/";
     private static final String BASE_URL = "https://api.github.com/";
 
-//    // boec
-//    //ClientId приложения на гите
-//    private static final String cliendId = "830e851082bc0c849162";
-//    //ClientSecret приложения на гите
-//    private static final String clientSecret = "58c5b23435daf4ea2c2dc099a5be5ed7a7f75678";
-
-    // me
-    //ClientId приложения на гите
+    private static final String APP_ID = "952021";
     private static final String cliendId = "fcd97c7a329b55f7498d";
-    //ClientSecret приложения на гите
     private static final String clientSecret = "84e8d8db1caf8de9c62bc1c254bbedd65f402b41";
 
     //CallBack для окончания авторизации
@@ -91,7 +81,7 @@ public class App extends Application {
         sharedPreferences.edit().putString(String.valueOf(R.string.username), userName).apply();
     }
 
-    public static String getCliendId() {
+    public static String getClientId() {
         return cliendId;
     }
 
