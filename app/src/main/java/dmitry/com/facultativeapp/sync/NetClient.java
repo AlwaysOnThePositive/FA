@@ -20,7 +20,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class NetClient {
 
-    //Класс для работы с сетью
+    //class for network
 
     private String LOG_TAG = "NetClient URL";
     private Api api;

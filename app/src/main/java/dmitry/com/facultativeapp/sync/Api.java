@@ -41,8 +41,8 @@ public interface Api {
                        @Path("token") String token);
 
 
-//    https://github.com/settings/applications/952021/revoke_all_tokens
-//    @POST("/settings/applications/952021/revoke_all_tokens")
-//    Call<String>deleteToken();
+    // POST /applications/:client_id/tokens/:access_token
+    @POST("applications/{client_id}/tokens/{access_token}")
+    Call<String>logout(@Path("client_id") String clientId, @Path("access_token") String token);
 
 }

@@ -118,38 +118,37 @@ public class ActivityMain extends AppCompatActivity
 
         // удаляем токен
         // https://github.com/settings/applications/952021/revoke_all_tokens
-//        Retrofit retrofit = new Retrofit.Builder()
-//                .baseUrl("https://github.com/")
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .build();
-//        Api api = retrofit.create(Api.class);
-//        Call<String> sendTokenCall = api.deleteToken();
-//        sendTokenCall.enqueue(new Callback<String>() {
-//            @Override
-//            public void onResponse(Call<String> call, Response<String> response) {
-//                if (response.isSuccessful()) {
-//                    Toast.makeText(ActivityMain.this, "token is deleted", Toast.LENGTH_SHORT)
-//                            .show();
-//                } else {
-//                    Toast.makeText(ActivityMain.this, "server returned a mistake", Toast
-//                            .LENGTH_SHORT).show();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<String> call, Throwable t) {
-//                Toast.makeText(ActivityMain.this, "error", Toast.LENGTH_SHORT).show();
-//            }
-//        });
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://api.github.com/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        Api api = retrofit.create(Api.class);
+        Call<String> sendTokenCall = api.logout(App.getCliendId(), App.getAccessToken());
+        sendTokenCall.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(ActivityMain.this, "token is deleted", Toast.LENGTH_SHORT)
+                            .show();
+                } else {
+                    Toast.makeText(ActivityMain.this, "server returned a mistake", Toast
+                            .LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Toast.makeText(ActivityMain.this, "error", Toast.LENGTH_SHORT).show();
+            }
+        });
 
 
-        Intent intent = new Intent(this, ActivityAuth.class);
-        startActivity(intent);
+        finishActivity();
 
     }
 
     private void finishActivity() {
-        Intent intent = new Intent(this, SplashActivity.class);
+        Intent intent = new Intent(this, ActivityAuth.class);
         startActivity(intent);
         finishAffinity();
     }
